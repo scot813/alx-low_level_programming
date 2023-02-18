@@ -11,7 +11,7 @@ int main(void)
 
 	for (lc = 'a'; lc <= 'z'; lc++)
 	{
-		if (lc != 'q'&& lc != 'e')
+		if (lc != 'q' && lc != 'e')
 			putchar(lc);
 	}
 	putchar('\n');
