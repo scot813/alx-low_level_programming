@@ -9,7 +9,6 @@ int main(int argc, char *argv[])
 {
 	int i;
 
-	printf ("%s\n",argv[0]);
 	if (argc > 1)
 	{
 		for (i = 0; i < argc; i++)
@@ -17,5 +16,7 @@ int main(int argc, char *argv[])
 			printf("%s\n", argv[i]);
 		}
 	}
+	else
+		printf("%s\n", argv[0]);
 	return (0);
 }
