@@ -52,7 +52,7 @@ char **strtow(char *str)
 			if (c)
 			{
 				end = i;
-				t = (char *) malloc(sizeof(char) * (c + i));
+				t = (char *) malloc(sizeof(char) * (c + 1));
 				if (t == NULL)
 					return (NULL);
 
