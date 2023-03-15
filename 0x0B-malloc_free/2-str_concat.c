@@ -35,9 +35,9 @@ char *str_concat(char *s1, char *s2)
 
 	if (s2)
 	{
-		while (r < j + l)
+		while (i < j + l)
 		{
-			ptr[r] = s2[r];
+			ptr[i] = s2[r];
 			i++;
 			r++;
 		}
