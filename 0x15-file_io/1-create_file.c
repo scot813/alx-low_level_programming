@@ -12,7 +12,7 @@ int create_file(const char *filename, char *text_content)
 
 	fpOpen = open(filename, O_RDWR | O_TRUNC | O_CREAT, 0600);
 	if (fpOpen == -1)
-                return (-1);
+		return (-1);
 	if (text_content == NULL)
 	{
 	text_content = "";
@@ -23,7 +23,7 @@ int create_file(const char *filename, char *text_content)
 	}
 
 	fpWrite = write(fpOpen, text_content, length);
-	if(fpWrite == -1)
+	if (fpWrite == -1)
 		return (-1);
 	close(fpOpen);
 	return (1);
