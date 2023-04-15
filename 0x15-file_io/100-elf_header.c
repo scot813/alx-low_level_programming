@@ -1,5 +1,16 @@
 #include "main.h"
 #include <elf.h>
+void check_elf(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
+void print_data(unsigned char *e_ident);
+void print_version(unsigned char *e_ident);
+void print_osabi(unsigned char *e_ident);
+void print_abi(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
+void print_entry(unsigned long int e_entry, unsigned char *e_ident);
+void close_file(int elf_file);
+
 /**
  * check_elf - Checks if a file is an ELF file.
  * @e_ident: A pointer to an array containing the ELF magic numbers.
@@ -58,7 +69,7 @@ void print_class(unsigned char *e_ident)
 {
 	printf(" class:                             ");
 
-	switch (e_ident[EI_CLASS]) /*EI_CLASS - File class*/
+	switch (e_ident[EI_CLASS])
 	{
 		case ELFCLASSNONE:
 			printf("none\n");
@@ -108,12 +119,18 @@ void print_data(unsigned char *e_ident)
 */
 void print_version(unsigned char *e_ident)
 {
-	printf("  Version:                           ");/*EI_VERSION - File version*/
+	printf("  Version: %d",
+			e_ident[EI_VERSION]);
 
-	if (e_ident[EI_VERSION] == EV_CURRENT)
-		printf("%d (current)\n", e_ident[EI_VERSION]);
-	else
-		printf("%i\n", e_ident[EI_VERSION]);
+	switch (e_ident[EI_VERSION])
+	{
+	case EV_CURRENT:
+		printf(" (current)\n");
+		break;
+	default:
+		printf("\n");
+		break;
+	}
 }
 
 /**
@@ -126,9 +143,9 @@ void print_version(unsigned char *e_ident)
 */
 void print_osabi(unsigned char *e_ident)
 {
-	printf("  OS/ABI:                            ");
+	printf("  OS/ABI: ");
 
-	switch (e_ident[EI_OSABI])/*EI_OSABI = OS Application Binary Interface*/
+	switch (e_ident[EI_OSABI])
 	{
 		case ELFOSABI_SYSV:
 			printf("UNIX - System V\n");
@@ -309,4 +326,4 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	free(head);
 	close_file(head_file);
 	return (0);
-} 
+}
